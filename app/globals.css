@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/*
+  Інтерфейс має лише світлу тему.
+  Кольори фону й тексту задані Tailwind-класами на <body> у layout.tsx
+  (bg-gray-50 text-gray-800), тому тут лишається тільки шрифт.
+*/
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
