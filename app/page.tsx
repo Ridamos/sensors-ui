@@ -17,7 +17,7 @@ const sensors = [
 export default function HomePage() {
   return (
     <section className="w-full max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-4">Система моніторингу давачів</h1>
+      <h1 className="text-3xl font-bold mb-4">Система моніторингу давачів лаб №3</h1>
       <p className="mb-6 text-gray-700">
         Клієнтський застосунок на <strong>Next.js</strong> і{" "}
         <strong>Tailwind CSS</strong>. Показання давачів температури та диму він
