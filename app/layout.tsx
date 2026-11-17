@@ -4,7 +4,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Sensors Dashboard",
-  description: "Моніторинг давачів температури та диму (Next.js + NestJS)",
+  description:
+    "Моніторинг давачів температури та диму (Next.js + NestJS + PostgreSQL)",
 };
 
 // Кореневий layout: усе, що тут, повторюється на кожній сторінці.

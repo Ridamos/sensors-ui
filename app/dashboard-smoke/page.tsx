@@ -105,8 +105,8 @@ export default function DashboardSmoke() {
 
         <p className="mt-4 text-sm text-gray-600 break-all">
           Джерело: {API_URL}
-          {PATH} · записів на сервері: {records.length} · оновлено:{" "}
-          {updatedAt || "—"}
+          {PATH} · отримано записів із бази: {records.length} (сервер віддає
+          останні 50) · оновлено: {updatedAt || "—"}
         </p>
       </div>
     </div>

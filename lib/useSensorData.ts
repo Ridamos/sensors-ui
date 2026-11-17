@@ -17,7 +17,7 @@ export function useSensorData<T>(path: string, intervalMs: number) {
   const [error, setError] = useState("");
   const [updatedAt, setUpdatedAt] = useState("");
 
-  // GET: забрати весь масив записів давача.
+  // GET: забрати останні записи давача (сервер читає їх із бази даних).
   const load = useCallback(async () => {
     if (!API_URL) {
       setError(
@@ -46,7 +46,7 @@ export function useSensorData<T>(path: string, intervalMs: number) {
     }
   }, [path]);
 
-  // POST: додати нове показання і одразу перечитати масив.
+  // POST: додати нове показання і одразу перечитати записи.
   const send = useCallback(
     async (body: object) => {
       try {

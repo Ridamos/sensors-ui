@@ -15,12 +15,14 @@ export interface Reading {
 }
 
 // Запис температурного давача — у такому вигляді його повертає сервер.
+// З лаб. №5 записи лежать у базі даних PostgreSQL; додалося поле createdAt.
 export interface TemperatureRecord {
   id: string;
-  timestamp: string;
+  timestamp: string; // час вимірювання
   sensorName: string;
   value: number;
   unit: string;
+  createdAt: string; // час запису рядка в базу
 }
 
 // Запис давача диму. threshold і alarm обчислює сервер (лаб. №1).
@@ -33,9 +35,11 @@ export interface SmokeRecord {
   unit: string;
   threshold: number;
   alarm: boolean;
+  createdAt: string;
 }
 
 // Час із серверного timestamp у вигляді «гг:хх:сс».
+// База зберігає час в UTC, тут він переводиться в місцевий час браузера.
 export function timeLabel(timestamp: string): string {
   return new Date(timestamp).toLocaleTimeString("uk-UA", {
     hour: "2-digit",

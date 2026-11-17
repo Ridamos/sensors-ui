@@ -17,13 +17,14 @@ const sensors = [
 export default function HomePage() {
   return (
     <section className="w-full max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-4">Система моніторингу давачів лаб №3</h1>
+      <h1 className="text-3xl font-bold mb-4">Система моніторингу давачів</h1>
       <p className="mb-6 text-gray-700">
         Клієнтський застосунок на <strong>Next.js</strong> і{" "}
         <strong>Tailwind CSS</strong>. Показання давачів температури та диму він
-        отримує від серверного застосунку на <strong>NestJS</strong> і показує
-        їх у вигляді графіків, які оновлюються кожні кілька секунд. Клієнт
-        розгортається на Vercel, сервер — на Render.
+        отримує від серверного застосунку на <strong>NestJS</strong>, який
+        зберігає їх у базі даних <strong>PostgreSQL</strong>, і показує у
+        вигляді графіків, які оновлюються кожні кілька секунд. Клієнт
+        розгортається на Vercel, сервер і база — на Render.
       </p>
       <p className="mb-8 text-gray-700 break-all">
         Адреса сервера (NEXT_PUBLIC_API_URL):{" "}
