@@ -38,6 +38,28 @@ export interface SmokeRecord {
   createdAt: string;
 }
 
+// Лаб. №6: сповіщення про критичну температуру — таку подію сервер надсилає
+// через SSE (GET /temperature-sensors/alerts). Після JSON час — це рядок.
+export interface TemperatureAlert {
+  message: string;
+  temperature: number;
+  sensorName: string;
+  timestamp: string;
+  severity: "critical" | "warning";
+}
+
+// Сповіщення про задимлення (GET /smoke-sensors/alerts).
+export interface SmokeAlert {
+  message: string;
+  value: number;
+  unit: string;
+  threshold: number;
+  sensorName: string;
+  location: string;
+  timestamp: string;
+  severity: "critical" | "warning";
+}
+
 // Час із серверного timestamp у вигляді «гг:хх:сс».
 // База зберігає час в UTC, тут він переводиться в місцевий час браузера.
 export function timeLabel(timestamp: string): string {

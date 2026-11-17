@@ -1,14 +1,23 @@
 "use client";
 
+import AlertList from "@/components/AlertList";
 import DataState from "@/components/DataState";
 import SensorChart from "@/components/SensorChart";
 import StatCard from "@/components/StatCard";
-import { API_URL, timeLabel, type SmokeRecord } from "@/lib/api";
+import {
+  API_URL,
+  timeLabel,
+  type SmokeAlert,
+  type SmokeRecord,
+} from "@/lib/api";
 import { axisTicks } from "@/lib/chart";
+import { useAlerts } from "@/lib/useAlerts";
 import { useSensorData } from "@/lib/useSensorData";
 
 // Маршрут серверного API для давача диму.
 const PATH = "/smoke-sensors";
+// Лаб. №6: SSE-маршрут, яким сервер надсилає сповіщення про задимлення.
+const ALERTS_PATH = "/smoke-sensors/alerts";
 // Як часто перечитувати дані із сервера, мс.
 const REFRESH_MS = 5000;
 // Скільки останніх показань показувати на графіку.
@@ -20,6 +29,12 @@ const UNIT = "ppm";
 export default function DashboardSmoke() {
   const { records, status, error, updatedAt, send } =
     useSensorData<SmokeRecord>(PATH, REFRESH_MS);
+  // Лаб. №6: останні 5 сповіщень про задимлення, отриманих через SSE.
+  const {
+    alerts,
+    status: streamStatus,
+    clear,
+  } = useAlerts<SmokeAlert>(ALERTS_PATH);
 
   const shown = records
     .filter((record) => record.unit === UNIT)
@@ -50,6 +65,18 @@ export default function DashboardSmoke() {
   return (
     <div className="w-full max-w-4xl mx-auto">
       <h1 className="text-2xl font-semibold mb-6">Графік давача диму 💨</h1>
+
+      <AlertList
+        alerts={alerts.map((alert) => ({
+          key: alert.key,
+          message: alert.message,
+          source: `${alert.sensorName}, ${alert.location}`,
+          time: timeLabel(alert.timestamp),
+        }))}
+        status={streamStatus}
+        path={ALERTS_PATH}
+        onClear={clear}
+      />
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
         <StatCard

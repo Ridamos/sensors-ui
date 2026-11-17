@@ -1,0 +1,25 @@
+# Що НЕ потрапляє в образ під час збирання (docker build).
+
+# Залежності й результат збирання створюються всередині образу.
+node_modules
+.next
+out
+*.tsbuildinfo
+next-env.d.ts
+
+# Локальні налаштування. Адресу сервера образ отримує з docker-compose.yml (build.args).
+.env
+.env.*
+!.env.example
+
+# Для роботи сайту не потрібні.
+.git
+.gitignore
+.vercel
+.vscode
+.idea
+README.md
+AGENTS.md
+Dockerfile
+.dockerignore
+npm-debug.log*
